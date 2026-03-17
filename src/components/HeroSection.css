@@ -59,6 +59,10 @@
   text-wrap: balance;
 }
 
+.hero-article-n {
+  text-shadow: 1px 0 rgba(255, 255, 255, 0.25), -1px 0 rgba(255, 255, 255, 0.16);
+}
+
 .hero-grid {
   padding-top: 2rem;
 }

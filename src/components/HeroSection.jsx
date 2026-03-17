@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { HiArrowDown, HiArrowRight } from "react-icons/hi";
 import "./HeroSection.css";
@@ -8,6 +8,11 @@ export default function HeroSection() {
   const containerRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
   const [isWordGlitchActive, setIsWordGlitchActive] = useState(false);
+  const animatedWords = useMemo(
+    () => ["Developer", "Designer", "Engineer", "Innovator", "Creator", "Problem Solver", "Tech Enthusiast", "Believer"],
+    []
+  );
+  const [currentAnimatedWord, setCurrentAnimatedWord] = useState(animatedWords[0]);
   const [isIdleGlitchActive, setIsIdleGlitchActive] = useState(false);
   const wordGlitchTimeoutRef = useRef(null);
   const idleGlitchTimeoutRef = useRef(null);
@@ -68,34 +73,22 @@ export default function HeroSection() {
     }, 600);
   }, [prefersReducedMotion]);
 
-  const animatedWordSequence = useMemo(
-    () => [
-      "Developer",
-      2000,
-      triggerWordGlitch,
-      "Designer",
-      2000,
-      triggerWordGlitch,
-      "Engineer",
-      2000,
-      triggerWordGlitch,
-      "Innovator",
-      2000,
-      triggerWordGlitch,
-      "Creator",
-      2000,
-      triggerWordGlitch,
-      "Problem Solver",
-      2000,
-      triggerWordGlitch,
-      "Tech Enthusiast",
-      2000,
-      triggerWordGlitch,
-      "Believer",
-      2000,
-      triggerWordGlitch,
-    ],
+  const article = useMemo(
+    () => (/^[aeiou]/i.test(currentAnimatedWord.trim()) ? "an" : "a"),
+    [currentAnimatedWord]
+  );
+
+  const handleWordTransition = useCallback(
+    (word) => {
+      setCurrentAnimatedWord(word);
+      triggerWordGlitch();
+    },
     [triggerWordGlitch]
+  );
+
+  const animatedWordSequence = useMemo(
+    () => animatedWords.flatMap((word) => [() => handleWordTransition(word), word, 2000]),
+    [animatedWords, handleWordTransition]
   );
 
   const { scrollYProgress } = useScroll({
@@ -184,6 +177,20 @@ export default function HeroSection() {
                   transition={{ duration: 0.4, delay: 1.4, ease: "easeOut" }}
                 >
                   {"I'm a"}
+                  <AnimatePresence initial={false} mode="wait">
+                    {article === "an" && (
+                      <motion.span
+                        key="article-n"
+                        className="inline-block hero-article-n"
+                        initial={prefersReducedMotion ? false : { opacity: 0, x: -2, filter: "blur(1.5px)" }}
+                        animate={prefersReducedMotion ? {} : { opacity: [0.45, 0.9, 1], x: [-1, 1, 0], filter: "blur(0px)" }}
+                        exit={prefersReducedMotion ? {} : { opacity: [1, 0.75, 0], x: [0, -1, 1], filter: "blur(1.5px)" }}
+                        transition={{ duration: 0.22, ease: "easeOut" }}
+                      >
+                        n
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </motion.span>
               </motion.h2>
             </div>

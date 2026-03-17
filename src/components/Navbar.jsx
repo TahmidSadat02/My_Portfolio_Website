@@ -90,14 +90,17 @@ export default function Navbar() {
         <motion.a
           href="#contact"
           onClick={(e) => { e.preventDefault(); handleClick("#contact"); }}
-          className="hidden md:inline-flex items-center gap-2 pl-4 pr-1 py-1 text-[14px] font-semibold rounded-full
-            !text-white bg-black/80 border border-white/60
-            hover:bg-white hover:!text-black transition-all duration-300"
+          className="hidden md:inline-flex relative overflow-hidden items-center gap-2 pl-5 pr-1.5 py-1.5 text-[14px] font-semibold rounded-full
+            !text-white border border-white/35 bg-gradient-to-b from-white/12 via-black/80 to-black/95
+            shadow-[0_0_0_1px_rgba(255,255,255,0.12),0_8px_24px_rgba(0,0,0,0.45)]
+            hover:border-white/60 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.25),0_10px_28px_rgba(0,0,0,0.55)]
+            transition-all duration-300"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
         >
+          <span className="pointer-events-none absolute inset-x-2 top-0 h-[45%] rounded-full bg-gradient-to-b from-white/35 to-transparent" />
           Get in touch
-          <span className="w-7 h-7 rounded-full bg-white !text-black flex items-center justify-center ml-1 border border-black/10">
+          <span className="w-7 h-7 rounded-full bg-white/95 !text-black flex items-center justify-center ml-1 border border-black/15 shadow-inner shadow-black/20">
             <HiArrowRight className="text-xs" />
           </span>
         </motion.a>
