@@ -1,0 +1,119 @@
+.hero-3d {
+  background: #060608;
+}
+
+.hero-body,
+.hero-text-wrap {
+  font-family: "Poppins", "DM Sans", "Inter", system-ui, sans-serif;
+}
+
+.hero-kicker,
+.hero-mid,
+.hero-big {
+  font-family: "League Gothic", "Bebas Neue", "Poppins", sans-serif;
+}
+
+.hero-ambient {
+  background:
+    radial-gradient(980px 640px at 62% 52%, rgba(189, 76, 26, 0.35) 0%, rgba(189, 76, 26, 0.15) 36%, transparent 72%),
+    radial-gradient(700px 420px at 64% 60%, rgba(255, 115, 38, 0.22) 0%, transparent 68%);
+}
+
+.hero-kicker {
+  font-weight: 400;
+}
+
+.hero-mid {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.hero-big {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+.hero-grid {
+  padding-top: 5.5rem;
+}
+
+/* ── Shared canvas: mimics object-cover behavior ── */
+/* Both banner + cutout live inside this so they share the same
+   scale / crop, keeping the cutout pixel-aligned to the portrait. */
+
+.hero-canvas {
+  position: absolute;
+  /* These four values centre the canvas in the container, then
+     min-width / min-height: 100% + object-fit-like stretching make
+     it behave exactly like object-cover.                         */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Maintain the original banner's native aspect ratio */
+  aspect-ratio: 2528 / 1682;
+  /* Cover the parent: whichever axis is smaller gets stretched */
+  min-width: 100%;
+  min-height: 100%;
+  /* Keep intrinsic dimension on the other axis */
+  width: auto;
+  height: auto;
+}
+
+.hero-canvas-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Cutout image — positioned as a % of the original banner ──
+   In the 2528×1682 banner the portrait is roughly:
+     left edge  ≈  790 px  →  31.25 %
+     top  edge  ≈    0 px  →   0 %
+     width      ≈  950 px  →  37.6 %
+     height     ≈ 1682 px  → 100 %
+   We use those percentages so the cutout scales & crops
+   identically with the banner at every viewport size.           */
+
+.hero-cutout-wrap {
+  position: absolute;
+  /* percentage of the canvas = percentage of the original banner */
+  left: 31.25%;
+  top: 0;
+  width: 37.6%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-cutout-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.5));
+}
+
+/* ── Cutout overlay layer ── */
+.hero-cutout-layer {
+  overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    align-content: center;
+    padding-top: 6.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-3d *,
+  .hero-3d *::before,
+  .hero-3d *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
