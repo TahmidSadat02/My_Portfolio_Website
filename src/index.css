@@ -150,3 +150,42 @@ body {
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;
 }
+
+/* ── Global Text Color Override ── */
+:where(
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a,
+  li,
+  dt,
+  dd,
+  label,
+  button,
+  input,
+  textarea,
+  select,
+  small,
+  strong,
+  em,
+  b,
+  i,
+  blockquote,
+  figcaption,
+  time,
+  code,
+  pre
+) {
+  color: #000 !important;
+}
+
+:where(input, textarea)::placeholder {
+  color: #000 !important;
+  opacity: 1;
+}

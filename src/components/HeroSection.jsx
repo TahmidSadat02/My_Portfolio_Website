@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { HiArrowDown, HiArrowRight } from "react-icons/hi";
@@ -7,6 +7,96 @@ import "./HeroSection.css";
 export default function HeroSection() {
   const containerRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
+  const [isWordGlitchActive, setIsWordGlitchActive] = useState(false);
+  const [isIdleGlitchActive, setIsIdleGlitchActive] = useState(false);
+  const wordGlitchTimeoutRef = useRef(null);
+  const idleGlitchTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (wordGlitchTimeoutRef.current) {
+        clearTimeout(wordGlitchTimeoutRef.current);
+      }
+
+      if (idleGlitchTimeoutRef.current) {
+        clearTimeout(idleGlitchTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setIsIdleGlitchActive(false);
+      return;
+    }
+
+    const scheduleIdleGlitch = () => {
+      const delay = 4000 + Math.floor(Math.random() * 2000);
+      idleGlitchTimeoutRef.current = setTimeout(() => {
+        setIsIdleGlitchActive(true);
+        const pulseTimeout = setTimeout(() => {
+          setIsIdleGlitchActive(false);
+          scheduleIdleGlitch();
+        }, 200);
+        idleGlitchTimeoutRef.current = pulseTimeout;
+      }, delay);
+    };
+
+    scheduleIdleGlitch();
+
+    return () => {
+      if (idleGlitchTimeoutRef.current) {
+        clearTimeout(idleGlitchTimeoutRef.current);
+      }
+    };
+  }, [prefersReducedMotion]);
+
+  const triggerWordGlitch = useCallback(() => {
+    if (prefersReducedMotion) return;
+
+    if (wordGlitchTimeoutRef.current) {
+      clearTimeout(wordGlitchTimeoutRef.current);
+    }
+
+    setIsWordGlitchActive(false);
+    requestAnimationFrame(() => {
+      setIsWordGlitchActive(true);
+    });
+
+    wordGlitchTimeoutRef.current = setTimeout(() => {
+      setIsWordGlitchActive(false);
+    }, 600);
+  }, [prefersReducedMotion]);
+
+  const animatedWordSequence = useMemo(
+    () => [
+      "Developer",
+      2000,
+      triggerWordGlitch,
+      "Designer",
+      2000,
+      triggerWordGlitch,
+      "Engineer",
+      2000,
+      triggerWordGlitch,
+      "Innovator",
+      2000,
+      triggerWordGlitch,
+      "Creator",
+      2000,
+      triggerWordGlitch,
+      "Problem Solver",
+      2000,
+      triggerWordGlitch,
+      "Tech Enthusiast",
+      2000,
+      triggerWordGlitch,
+      "Believer",
+      2000,
+      triggerWordGlitch,
+    ],
+    [triggerWordGlitch]
+  );
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -18,7 +108,7 @@ export default function HeroSection() {
   const textY = useTransform(scrollYProgress, [0, 1], [0, 120]);
 
   return (
-    <section
+    <motion.section
       id="home"
       ref={containerRef}
       aria-label="Hero"
@@ -28,21 +118,26 @@ export default function HeroSection() {
       {/* ── Layer 1: Background banner ── */}
       <motion.div
         className="absolute -inset-[15%] w-[130%] h-[130%]"
+        initial={prefersReducedMotion ? false : { opacity: 0 }}
+        animate={prefersReducedMotion ? {} : { opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
         style={{
           y: prefersReducedMotion ? 0 : backgroundY,
           willChange: "transform",
         }}
       >
         <img
-          src="/banner.jpeg"
+          src="/bg.jpeg?v=20260317"
           alt=""
           loading="lazy"
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "center 22%", opacity: 0.24, filter: "grayscale(100%) blur(7px) brightness(1.35)" }}
         />
-        <div className="absolute inset-0 bg-black/35" />
+        <div className="absolute inset-0 bg-white/40" />
         <div className="hero-ambient absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060608]/70 via-[#060608]/25 to-[#060608]/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060608]/65 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/24 via-white/10 to-white/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/16 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/52 via-black/8 to-transparent" />
       </motion.div>
 
       {/* ── Layer 2: Text content ── */}
@@ -53,27 +148,43 @@ export default function HeroSection() {
           willChange: "transform",
         }}
       >
-        <div className="hero-text-wrap h-full w-full px-4 md:px-8 lg:px-10 flex flex-col pt-24 lg:pt-24">
+        <div className="hero-text-wrap h-full w-full px-4 md:px-8 lg:px-10 flex flex-col pt-6 lg:pt-8">
           <div className="hero-grid mx-auto w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-start flex-1">
             {/* Left side texts - getting partially covered by cutout */}
-            <div className="max-w-[800px] z-0 text-white relative text-left">
+            <div
+              className="max-w-[460px] z-0 text-white relative text-left self-start"
+              style={{ paddingLeft: "clamp(3rem, 6vw, 7rem)", marginTop: "18vh" }}
+            >
               <motion.p
-                className="hero-kicker text-[clamp(1rem,1.8vw,1.4rem)] font-bold text-white/90"
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+                className="hero-kicker mb-[0.3rem] text-[clamp(1.1rem,2.2vw,1.5rem)] font-normal text-white/70"
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                 animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.4, delay: 1.1, ease: "easeOut" }}
               >
                 Hey There,
               </motion.p>
 
               <motion.h2
-                className="hero-mid mt-1 text-[clamp(3rem,5.6vw,5.2rem)] font-black tracking-tighter leading-[0.95] text-white whitespace-nowrap"
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
-                animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                className="hero-mid mt-0 tracking-tighter leading-[0.95] text-white whitespace-nowrap"
+                initial={false}
+                animate={false}
               >
-                I&apos;m Sadat<br />
-                I&apos;m a
+                <motion.span
+                  className="mb-[0.2rem] block text-[clamp(2.8rem,5.4vw,4.3rem)] font-bold text-white"
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                  animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 1.25, ease: "easeOut" }}
+                >
+                  {"I'm Sadat"}
+                </motion.span>
+                <motion.span
+                  className="mb-0 block text-[clamp(1.7rem,3.3vw,2.8rem)] font-medium text-white/75"
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                  animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 1.4, ease: "easeOut" }}
+                >
+                  {"I'm a"}
+                </motion.span>
               </motion.h2>
             </div>
 
@@ -83,55 +194,42 @@ export default function HeroSection() {
       </motion.div>
 
       <motion.div
-        className="absolute inset-0 z-[1] pointer-events-none flex items-center justify-center"
-        initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
-        animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.65, delay: 0.18, ease: "easeOut" }}
+        className="absolute left-0 right-0 top-[66%] md:top-[68%] lg:top-[70%] -translate-y-1/2 z-[1] pointer-events-none flex justify-center"
+        initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.1 }}
+        animate={prefersReducedMotion ? {} : { opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 1.8, ease: "easeOut" }}
       >
         <h1
-          className="hero-big text-[clamp(6rem,15vw,14rem)] font-black tracking-tighter leading-[0.9] whitespace-nowrap opacity-55"
-          style={{ WebkitTextStroke: "2px white", color: "transparent" }}
+          className="hero-big text-[clamp(3.8rem,8.8vw,8.2rem)] font-black tracking-tighter leading-[0.9] whitespace-nowrap"
+          style={{ color: "rgba(255,255,255,0.15)", WebkitTextStroke: "0 transparent" }}
         >
-          {prefersReducedMotion ? (
-            "Developer"
-          ) : (
-            <TypeAnimation
-              sequence={[
-                "Developer",
-                2000,
-                "Designer",
-                2000,
-                "Innovator",
-                2000,
-                "Creator",
-                2000,
-                "Problem Solver",
-                2000,
-                "Dreamer",
-                2000,
-              ]}
-              speed={50}
-              repeat={Infinity}
-              wrapper="span"
-            />
-          )}
+          <span className={`hero-word-glitch ${isWordGlitchActive ? "glitch-active" : ""} ${isIdleGlitchActive ? "idle-glitch-active" : ""}`}>
+            {prefersReducedMotion ? (
+              "Developer"
+            ) : (
+              <TypeAnimation sequence={animatedWordSequence} speed={50} repeat={Infinity} wrapper="span" />
+            )}
+          </span>
         </h1>
       </motion.div>
 
       {/* ── Layer 3: Cutout ── */}
       <motion.div
         className="hero-cutout-layer absolute inset-0 w-full h-full z-[10] pointer-events-none flex items-end justify-center"
+        initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.85, z: -100 }}
+        animate={prefersReducedMotion ? {} : { opacity: 1, scale: 1, z: 0 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         style={{
           y: prefersReducedMotion ? 0 : cutoutY,
           willChange: "transform",
         }}
       >
         <img
-          src="/cutout-banner.png"
+          src="/cuted.png"
           alt=""
           aria-hidden="true"
           loading="lazy"
-          className="h-full w-full object-contain object-[center_bottom] scale-[0.95] md:scale-100 origin-bottom"
+          className="h-full w-full object-contain object-[center_bottom] scale-[0.9] md:scale-[0.95] origin-bottom"
         />
       </motion.div>
 
@@ -153,6 +251,6 @@ export default function HeroSection() {
           <HiArrowDown className="text-2xl" />
         </motion.button>
       </motion.div>
-    </section>
+    </motion.section>
   );
 }

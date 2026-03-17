@@ -1,3 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&display=swap");
+
+@font-face {
+  font-family: "Bevola";
+  src: url("/fonts/BevolaDemoRegular-4nzoB.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Typographica";
+  src: url("/fonts/Typographica-Blp5.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 .hero-3d {
   background: #060608;
 }
@@ -8,34 +26,158 @@
 }
 
 .hero-kicker,
-.hero-mid,
+.hero-mid {
+  font-family: "Typographica", "Lora", "Times New Roman", serif;
+}
+
 .hero-big {
-  font-family: "League Gothic", "Bebas Neue", "Poppins", sans-serif;
+  font-family: "Bevola", "Six Caps", "League Gothic", "Bebas Neue", sans-serif;
 }
 
 .hero-ambient {
   background:
-    radial-gradient(980px 640px at 62% 52%, rgba(189, 76, 26, 0.35) 0%, rgba(189, 76, 26, 0.15) 36%, transparent 72%),
-    radial-gradient(700px 420px at 64% 60%, rgba(255, 115, 38, 0.22) 0%, transparent 68%);
+    radial-gradient(1240px 860px at 62% 52%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 40%, transparent 76%),
+    radial-gradient(900px 620px at 64% 60%, rgba(255, 255, 255, 0.14) 0%, transparent 72%);
+  filter: blur(80px);
+  transform: scale(1.06);
 }
 
 .hero-kicker {
-  font-weight: 400;
+  font-weight: 520;
+  letter-spacing: 0.01em;
 }
 
 .hero-mid {
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  font-weight: 560;
+  letter-spacing: 0.005em;
 }
 
 .hero-big {
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.02em;
+  text-transform: uppercase;
   text-wrap: balance;
 }
 
 .hero-grid {
-  padding-top: 5.5rem;
+  padding-top: 2rem;
+}
+
+.hero-word-glitch {
+  display: inline-block;
+  will-change: transform, opacity, clip-path, filter;
+  transform: translate3d(0, 0, 0);
+}
+
+.hero-word-glitch.glitch-active {
+  animation: hero-word-glitch-burst 0.6s steps(2, end) both;
+}
+
+.hero-word-glitch.idle-glitch-active:not(.glitch-active) {
+  animation: hero-word-idle-glitch 0.2s steps(2, end) both;
+}
+
+@keyframes hero-word-glitch-burst {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 0 0);
+    letter-spacing: 0.02em;
+    filter: brightness(1);
+    text-shadow: none;
+  }
+  8% {
+    opacity: 0.42;
+    transform: translate3d(-10px, 0, 0) scale(1.05);
+    clip-path: polygon(0 0, 100% 0, 100% 31%, 0 36%, 0 100%, 100% 100%);
+    letter-spacing: 0.3em;
+    filter: brightness(1.8);
+    text-shadow: 6px 0 #ff0000, -6px 0 #00ffff, 0 4px #00ff00;
+  }
+  16% {
+    opacity: 0.85;
+    transform: translate3d(9px, 0, 0) scale(1.03);
+    clip-path: polygon(0 0, 100% 0, 100% 29%, 0 20%, 0 71%, 100% 68%, 100% 100%, 0 100%);
+    text-shadow: -6px 0 #ff0000, 6px 0 #00ffff, 0 4px #00ff00;
+  }
+  24% {
+    opacity: 0.38;
+    transform: translate3d(-8px, 0, 0) scale(1.01);
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 25%, 0 66%, 100% 74%, 100% 100%, 0 100%);
+    text-shadow: 6px 0 #ff0000, -6px 0 #00ffff, 0 4px #00ff00;
+  }
+  32% {
+    opacity: 0.92;
+    transform: translate3d(10px, 0, 0) scale(1.03);
+    clip-path: polygon(0 0, 100% 0, 100% 38%, 0 31%, 0 63%, 100% 57%, 100% 100%, 0 100%);
+    text-shadow: -6px 0 #ff0000, 6px 0 #00ffff, 0 4px #00ff00;
+  }
+  40% {
+    opacity: 0.35;
+    transform: translate3d(-9px, 0, 0) scale(1.02);
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 40%, 0 70%, 100% 61%, 100% 100%, 0 100%);
+    text-shadow: 6px 0 #ff0000, -6px 0 #00ffff, 0 4px #00ff00;
+  }
+  48% {
+    opacity: 0.8;
+    transform: translate3d(8px, 0, 0) scale(1.01);
+    clip-path: polygon(0 0, 100% 0, 100% 34%, 0 27%, 0 65%, 100% 73%, 100% 100%, 0 100%);
+    text-shadow: -6px 0 #ff0000, 6px 0 #00ffff, 0 4px #00ff00;
+  }
+  56% {
+    opacity: 0.44;
+    transform: translate3d(-10px, 0, 0) scale(1.04);
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0 38%, 0 68%, 100% 60%, 100% 100%, 0 100%);
+    text-shadow: 6px 0 #ff0000, -6px 0 #00ffff, 0 4px #00ff00;
+  }
+  64% {
+    opacity: 0.9;
+    transform: translate3d(9px, 0, 0) scale(1.02);
+    clip-path: polygon(0 0, 100% 0, 100% 36%, 0 29%, 0 62%, 100% 71%, 100% 100%, 0 100%);
+    text-shadow: -6px 0 #ff0000, 6px 0 #00ffff, 0 4px #00ff00;
+  }
+  74% {
+    opacity: 0.5;
+    transform: translate3d(-8px, 0, 0) scale(1.01);
+    clip-path: polygon(0 0, 100% 0, 100% 32%, 0 40%, 0 66%, 100% 58%, 100% 100%, 0 100%);
+    text-shadow: 6px 0 #ff0000, -6px 0 #00ffff, 0 4px #00ff00;
+  }
+  86% {
+    opacity: 0.78;
+    transform: translate3d(6px, 0, 0) scale(1.005);
+    clip-path: inset(0 0 0 0);
+    letter-spacing: 0.1em;
+    text-shadow: -6px 0 #ff0000, 6px 0 #00ffff, 0 4px #00ff00;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    clip-path: inset(0 0 0 0);
+    letter-spacing: 0.02em;
+    filter: brightness(1);
+    text-shadow: none;
+  }
+}
+
+@keyframes hero-word-idle-glitch {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    text-shadow: none;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.94;
+    transform: translate3d(2px, 0, 0);
+    text-shadow: 2px 0 rgba(255, 0, 0, 0.8), -2px 0 rgba(0, 255, 255, 0.8);
+    filter: brightness(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    text-shadow: none;
+    filter: brightness(1);
+  }
 }
 
 /* ── Shared canvas: mimics object-cover behavior ── */
@@ -110,6 +252,17 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-word-glitch,
+  .hero-word-glitch.glitch-active,
+  .hero-word-glitch.idle-glitch-active {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    clip-path: inset(0 0 0 0) !important;
+    filter: none !important;
+    text-shadow: none !important;
+  }
+
   .hero-3d *,
   .hero-3d *::before,
   .hero-3d *::after {

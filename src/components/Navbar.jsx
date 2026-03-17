@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { HiArrowRight } from "react-icons/hi";
 import { navLinks } from "../data/portfolio";
@@ -8,6 +8,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => {
@@ -33,9 +34,9 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      initial={prefersReducedMotion ? false : { y: "-100%", opacity: 0 }}
+      animate={prefersReducedMotion ? {} : { y: 0, opacity: 1 }}
+      transition={{ duration: 0.4, delay: 0.8, ease: "easeOut" }}
       className={`fixed left-0 right-0 z-50 w-full max-w-full transition-all duration-500 ${
         scrolled
           ? "top-0 bg-dark-900/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20"
@@ -51,8 +52,8 @@ export default function Navbar() {
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
         >
-          <span className="text-white">Alex</span>
-          <span className="text-[#00e5ff]">.</span>
+          <span className="!text-white">Sadat</span>
+          <span className="!text-white">.</span>
         </motion.a>
 
         {/* Desktop Links */}
@@ -67,8 +68,8 @@ export default function Navbar() {
                   onClick={(e) => { e.preventDefault(); handleClick(href); }}
                   className={`relative text-[13px] font-bold tracking-widest uppercase transition-colors duration-300 ${
                     isActive
-                      ? "text-white"
-                      : "text-white/60 hover:text-white"
+                      ? "!text-white"
+                      : "!text-white/80 hover:!text-white"
                   }`}
                 >
                   {name}
@@ -77,7 +78,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="navbar-active-dot"
-                    className="absolute -bottom-3 w-1.5 h-1.5 rounded-full bg-[#00e5ff]"
+                    className="absolute -bottom-3 w-1.5 h-1.5 rounded-full bg-white"
                   />
                 )}
               </div>
@@ -89,14 +90,14 @@ export default function Navbar() {
         <motion.a
           href="#contact"
           onClick={(e) => { e.preventDefault(); handleClick("#contact"); }}
-          className="hidden md:inline-flex items-center gap-2 pl-4 pr-1 py-1 text-[14px] font-bold
-            bg-white text-black rounded-full
-            hover:bg-gray-100 transition-all duration-300"
+          className="hidden md:inline-flex items-center gap-2 pl-4 pr-1 py-1 text-[14px] font-semibold rounded-full
+            !text-white bg-black/80 border border-white/60
+            hover:bg-white hover:!text-black transition-all duration-300"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
         >
           Get in touch
-          <span className="w-7 h-7 rounded-full bg-[#e86a24] text-white flex items-center justify-center ml-1">
+          <span className="w-7 h-7 rounded-full bg-white !text-black flex items-center justify-center ml-1 border border-black/10">
             <HiArrowRight className="text-xs" />
           </span>
         </motion.a>
