@@ -4,7 +4,7 @@ import "./About.css";
 
 export default function About() {
   return (
-    <SectionWrapper id="about" className="section-padding relative">
+    <SectionWrapper id="about" className="section-padding pb-8 md:pb-12 relative">
       <div className="absolute inset-0 bg-radial-purple pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto">

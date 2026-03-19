@@ -32,13 +32,11 @@ export default function Skills() {
   const filtered = active === "All" ? skills : skills.filter((s) => s.category === active);
 
   return (
-    <SectionWrapper id="skills" className="section-padding relative">
-      <div className="absolute inset-0 bg-radial pointer-events-none" />
-
+    <SectionWrapper id="skills" className="section-padding pt-0 -mt-12 md:-mt-20 relative">
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Heading — matches About Me style */}
         <motion.h2 variants={fadeInUp} className="skills-heading">
-          Skills & Tools
+          Skills
         </motion.h2>
 
         {/* Category Filters */}
@@ -54,8 +52,8 @@ export default function Skills() {
           ))}
         </motion.div>
 
-        {/* Skills Grid */}
-        <motion.div layout className="skills-grid">
+        {/* Skills Vertical List */}
+        <motion.div layout className="skills-list">
           {filtered.map((skill, i) => {
             const Icon = iconMap[skill.icon];
             return (
@@ -67,20 +65,25 @@ export default function Skills() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="skills-card"
+                className="skills-list-item"
               >
-                <div className="relative">
-                  {Icon && <Icon className="skills-card-icon" />}
+                <div className="skills-item-info">
+                  {Icon && <Icon className="skills-item-icon" />}
+                  <span className="skills-item-name">{skill.name}</span>
                 </div>
-                <span className="skills-card-name">{skill.name}</span>
-                <div className="skills-card-bar">
-                  <motion.div
-                    className="skills-card-bar-fill"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: i * 0.05, ease: "easeOut" }}
-                  />
+                <div className="skills-item-bar-container">
+                  <div className="skills-item-bar text-right text-xs text-gray-500 mb-1 font-['Raylig']">
+                    {skill.level}%
+                  </div>
+                  <div className="skills-item-bar-bg">
+                    <motion.div
+                      className="skills-item-bar-fill"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${skill.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: i * 0.05, ease: "easeOut" }}
+                    />
+                  </div>
                 </div>
               </motion.div>
             );

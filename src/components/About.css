@@ -55,9 +55,9 @@
 
 .about-bio {
   padding-left: clamp(2rem, 4vw, 5rem);
-  padding-right: clamp(2rem, 4vw, 5rem);
-  font-size: clamp(0.9rem, 1.4vw, 1rem);
-  line-height: 1.9;
+  padding-right: clamp(1rem, 2vw, 2rem);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  line-height: 1.8;
   color: #2a2a2a;
   font-weight: 400;
   margin-top: 1.5rem;
