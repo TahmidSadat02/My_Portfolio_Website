@@ -48,9 +48,11 @@ body {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-neon-cyan);
   border-radius: 10px;
@@ -128,18 +130,37 @@ body {
 
 /* ── Animation Keyframes ── */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes pulse-neon {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 .animate-float {
@@ -152,8 +173,7 @@ body {
 }
 
 /* ── Global Text Color Override ── */
-:where(
-  body,
+:where(body,
   h1,
   h2,
   h3,
@@ -180,8 +200,7 @@ body {
   figcaption,
   time,
   code,
-  pre
-) {
+  pre) {
   color: #1a1a2e !important;
 }
 
@@ -229,7 +248,7 @@ body {
   z-index: 1;
 }
 
-.content-background > * {
+.content-background>* {
   position: relative;
   z-index: 2;
 }
