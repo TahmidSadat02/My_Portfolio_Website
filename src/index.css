@@ -216,13 +216,13 @@ body {
   height: 100px;
   margin-top: -100px;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent 0%, rgba(245, 245, 247, 0.3) 40%, rgba(245, 245, 247, 0.7) 75%, rgb(245, 245, 247) 100%);
+  background: linear-gradient(to bottom, transparent 0%, rgba(195, 190, 188, 0.3) 40%, rgba(195, 190, 188, 0.7) 75%, rgb(195, 190, 188) 100%);
 }
 
 /* ── Background Image for Content Sections ── */
 .content-background {
   position: relative;
-  background-color: rgb(245, 245, 247);
+  background-color: rgb(215, 212, 210);
 }
 
 /* Background image layer */
@@ -234,7 +234,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.08;
+  opacity: 0.14;
   z-index: 0;
 }
 
@@ -243,7 +243,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent, rgba(245, 245, 247, 0.3));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1));
   pointer-events: none;
   z-index: 1;
 }
@@ -271,19 +271,11 @@ body {
   left: 0;
   right: 0;
   height: 160px;
-  background: linear-gradient(to bottom, rgb(245, 245, 247) 0%, rgba(245, 245, 247, 0.92) 35%, rgba(245, 245, 247, 0.5) 70%, transparent 100%);
+  background: linear-gradient(to bottom, rgb(195, 190, 188) 0%, rgba(195, 190, 188, 0.92) 35%, rgba(195, 190, 188, 0.5) 70%, transparent 100%);
   pointer-events: none;
   z-index: 5;
 }
 
 #about::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 160px;
-  background: linear-gradient(to top, rgb(245, 245, 247) 0%, rgba(245, 245, 247, 0.92) 35%, rgba(245, 245, 247, 0.5) 70%, transparent 100%);
-  pointer-events: none;
-  z-index: 5;
+  display: none;
 }

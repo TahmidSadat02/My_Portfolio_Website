@@ -15,7 +15,7 @@ export default function About() {
 
         <motion.div variants={fadeInUp}>
           <p className="about-bio">
-            I'm Tahmid Sadat — a CS student who actually enjoys debugging at 3AM. I build things for the web that are fast, clean, and don't make people click 47 times to find what they need. Obsessed with turning "this looks broken" into "wait this actually goes hard." When I'm not pushing commits, I'm either overthinking UI decisions or convincing myself I'll sleep early tonight. Spoiler: I never do.
+            I'm Tahmid Sadat — a CSE student who actually enjoys debugging at 3AM. I build things for the web that are fast, clean, and don't make people click 47 times to find what they need. Obsessed with turning "this looks broken" into "wait this actually goes hard." When I'm not pushing commits, I'm either overthinking UI decisions or convincing myself I'll sleep early tonight. Spoiler: I never do.
           </p>
         </motion.div>
       </div>

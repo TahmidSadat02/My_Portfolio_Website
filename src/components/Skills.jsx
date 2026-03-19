@@ -7,7 +7,8 @@ import {
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 import { skills } from "../data/portfolio";
-import { SectionWrapper, SectionHeading, fadeInUp, scaleIn } from "../utils/animations";
+import { SectionWrapper, fadeInUp, scaleIn } from "../utils/animations";
+import "./Skills.css";
 
 const iconMap = {
   react: SiReact,
@@ -35,19 +36,18 @@ export default function Skills() {
       <div className="absolute inset-0 bg-radial pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        <SectionHeading title="Skills & Tools" subtitle="What I work with" />
+        {/* Heading — matches About Me style */}
+        <motion.h2 variants={fadeInUp} className="skills-heading">
+          Skills & Tools
+        </motion.h2>
 
         {/* Category Filters */}
-        <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-3 mb-12">
+        <motion.div variants={fadeInUp} className="skills-filters">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                active === cat
-                  ? "bg-gradient-to-r from-neon-cyan/20 to-neon-purple/20 text-neon-cyan border border-neon-cyan/30 shadow-[0_0_15px_rgba(0,245,255,0.15)]"
-                  : "glass text-gray-400 hover:text-white hover:border-white/20"
-              }`}
+              className={`skills-filter-btn ${active === cat ? "active" : ""}`}
             >
               {cat}
             </button>
@@ -55,10 +55,7 @@ export default function Skills() {
         </motion.div>
 
         {/* Skills Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
-        >
+        <motion.div layout className="skills-grid">
           {filtered.map((skill, i) => {
             const Icon = iconMap[skill.icon];
             return (
@@ -70,24 +67,15 @@ export default function Skills() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.05 }}
-                className="group glass rounded-2xl p-6 flex flex-col items-center gap-3
-                  hover:border-neon-cyan/30 hover:shadow-[0_0_25px_rgba(0,245,255,0.1)]
-                  transition-all duration-300 cursor-default"
+                className="skills-card"
               >
                 <div className="relative">
-                  {Icon && (
-                    <Icon className="text-3xl text-gray-400 group-hover:text-neon-cyan transition-colors duration-300" />
-                  )}
-                  <div className="absolute inset-0 blur-xl bg-neon-cyan/0 group-hover:bg-neon-cyan/20 transition-all duration-500 rounded-full" />
+                  {Icon && <Icon className="skills-card-icon" />}
                 </div>
-                <span className="text-xs font-medium text-gray-400 group-hover:text-white transition-colors">
-                  {skill.name}
-                </span>
-                {/* Skill level bar */}
-                <div className="w-full h-1 rounded-full bg-white/5 overflow-hidden">
+                <span className="skills-card-name">{skill.name}</span>
+                <div className="skills-card-bar">
                   <motion.div
-                    className="h-full rounded-full bg-gradient-to-r from-neon-cyan to-neon-blue"
+                    className="skills-card-bar-fill"
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
                     viewport={{ once: true }}
