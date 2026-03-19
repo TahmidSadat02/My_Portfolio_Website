@@ -124,7 +124,7 @@ export default function HeroSection() {
           alt=""
           loading="lazy"
           className="h-full w-full object-cover"
-          style={{ objectPosition: "center 22%", opacity: 0.24, filter: "grayscale(100%) blur(7px) brightness(1.35)" }}
+          style={{ objectPosition: "center 22%", opacity: 0.24, filter: "grayscale(100%) blur(1px) brightness(1.35)" }}
         />
         <div className="absolute inset-0 bg-white/40" />
         <div className="hero-ambient absolute inset-0" />
