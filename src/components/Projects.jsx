@@ -2,7 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { projects } from "../data/portfolio";
-import { SectionWrapper, SectionHeading, fadeInUp, scaleIn } from "../utils/animations";
+import { SectionWrapper, fadeInUp, scaleIn } from "../utils/animations";
+import "./Projects.css";
 
 export default function Projects() {
   const [filter, setFilter] = useState("all");
@@ -10,30 +11,28 @@ export default function Projects() {
 
   return (
     <SectionWrapper id="projects" className="section-padding relative">
-      <div className="absolute inset-0 bg-radial-purple pointer-events-none" />
-
       <div className="relative z-10 max-w-6xl mx-auto">
-        <SectionHeading title="Featured Projects" subtitle="What I've built" />
 
-        {/* Filter */}
-        <motion.div variants={fadeInUp} className="flex justify-center gap-3 mb-12">
+        {/* Heading — matches About / Skills style */}
+        <motion.h2 variants={fadeInUp} className="projects-heading">
+          Projects
+        </motion.h2>
+
+        {/* Filter pills */}
+        <motion.div variants={fadeInUp} className="projects-filters">
           {["all", "featured"].map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-6 py-2 rounded-full text-sm font-medium capitalize transition-all duration-300 ${
-                filter === f
-                  ? "bg-gradient-to-r from-neon-cyan/20 to-neon-purple/20 text-neon-cyan border border-neon-cyan/30"
-                  : "glass text-gray-400 hover:text-white"
-              }`}
+              className={`projects-filter-btn${filter === f ? " active" : ""}`}
             >
               {f === "all" ? "All Projects" : "Featured"}
             </button>
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
-        <motion.div layout className="grid md:grid-cols-2 gap-6">
+        {/* Grid */}
+        <motion.div layout className="projects-grid">
           <AnimatePresence mode="popLayout">
             {filtered.map((project, i) => (
               <motion.article
@@ -43,34 +42,28 @@ export default function Projects() {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                exit={{ opacity: 0, scale: 0.9 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 viewport={{ once: true }}
-                className="group glass rounded-2xl overflow-hidden hover:border-neon-cyan/20
-                  hover:shadow-[0_0_30px_rgba(0,245,255,0.08)] transition-all duration-500"
+                className="project-card"
               >
                 {/* Image */}
-                <div className="relative overflow-hidden h-52">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent" />
+                <div className="project-card-image">
+                  <img src={project.image} alt={project.title} />
+                  <div className="project-card-image-overlay" />
 
-                  {/* Overlay links */}
-                  <div className="absolute inset-0 flex items-center justify-center gap-4
-                    opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  {/* Hover links */}
+                  <div className="project-card-links">
                     {project.github && (
                       <motion.a
                         href={project.github}
                         target="_blank"
                         rel="noreferrer"
-                        className="w-12 h-12 rounded-full glass-strong flex items-center justify-center
-                          text-white hover:text-neon-cyan hover:border-neon-cyan/40 transition-all"
+                        className="project-card-link-btn"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
+                        aria-label="View GitHub"
                       >
-                        <FaGithub className="text-xl" />
+                        <FaGithub />
                       </motion.a>
                     )}
                     {project.live && (
@@ -78,46 +71,29 @@ export default function Projects() {
                         href={project.live}
                         target="_blank"
                         rel="noreferrer"
-                        className="w-12 h-12 rounded-full glass-strong flex items-center justify-center
-                          text-white hover:text-neon-cyan hover:border-neon-cyan/40 transition-all"
+                        className="project-card-link-btn"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
+                        aria-label="View Live"
                       >
-                        <FaExternalLinkAlt className="text-lg" />
+                        <FaExternalLinkAlt style={{ fontSize: "0.875rem" }} />
                       </motion.a>
                     )}
                   </div>
 
                   {/* Featured badge */}
                   {project.featured && (
-                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider
-                      bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30">
-                      Featured
-                    </div>
+                    <div className="project-card-badge">Featured</div>
                   )}
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold font-poppins text-white mb-2 group-hover:gradient-text transition-all">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
-
-                  {/* Tech stack */}
-                  <div className="flex flex-wrap gap-2">
+                {/* Body */}
+                <div className="project-card-body">
+                  <h3 className="project-card-title">{project.title}</h3>
+                  <p className="project-card-desc">{project.description}</p>
+                  <div className="project-card-tech">
                     {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-3 py-1 rounded-full text-[11px] font-medium
-                          bg-white/5 text-gray-400 border border-white/5
-                          group-hover:border-neon-cyan/20 group-hover:text-neon-cyan/80
-                          transition-all duration-300"
-                      >
-                        {t}
-                      </span>
+                      <span key={t} className="project-tech-tag">{t}</span>
                     ))}
                   </div>
                 </div>
