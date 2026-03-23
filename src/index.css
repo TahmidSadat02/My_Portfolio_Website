@@ -163,6 +163,28 @@ body {
   }
 }
 
+@keyframes bg-drift {
+  0% {
+    transform: scale(1.08) translate(0%, 0%);
+  }
+
+  25% {
+    transform: scale(1.08) translate(1.5%, -1%);
+  }
+
+  50% {
+    transform: scale(1.08) translate(0%, 1.5%);
+  }
+
+  75% {
+    transform: scale(1.08) translate(-1.5%, 0.5%);
+  }
+
+  100% {
+    transform: scale(1.08) translate(0%, 0%);
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -216,13 +238,14 @@ body {
   height: 100px;
   margin-top: -100px;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent 0%, rgba(195, 190, 188, 0.3) 40%, rgba(195, 190, 188, 0.7) 75%, rgb(195, 190, 188) 100%);
+  background: linear-gradient(to bottom, transparent 0%, rgba(175, 170, 168, 0.3) 40%, rgba(175, 170, 168, 0.7) 75%, rgb(175, 170, 168) 100%);
 }
 
 /* ── Background Image for Content Sections ── */
 .content-background {
   position: relative;
-  background-color: rgb(215, 212, 210);
+  background-color: rgb(175, 170, 168);
+  overflow: hidden;
 }
 
 /* Background image layer */
@@ -236,6 +259,9 @@ body {
   background-repeat: no-repeat;
   opacity: 0.14;
   z-index: 0;
+  transform: scale(1.08);
+  animation: bg-drift 20s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Overlay layers container */
