@@ -124,7 +124,13 @@ export default function HeroSection() {
           alt=""
           loading="lazy"
           className="h-full w-full object-cover"
-          style={{ objectPosition: "center 22%", opacity: 0.24, filter: "grayscale(100%) blur(1px) brightness(1.35)" }}
+          style={{ 
+            objectPosition: "center 22%", 
+            opacity: 0.24, 
+            filter: "grayscale(100%) blur(1px) brightness(1.35)",
+            animation: "bg-drift 20s ease-in-out infinite",
+            willChange: "transform"
+          }}
         />
         <div className="absolute inset-0 bg-white/40" />
         <div className="hero-ambient absolute inset-0" />
@@ -145,11 +151,12 @@ export default function HeroSection() {
           <div className="hero-grid mx-auto w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-start flex-1">
             {/* Left side texts - getting partially covered by cutout */}
             <div
-              className="max-w-[460px] z-0 text-white relative text-left self-start"
-              style={{ paddingLeft: "clamp(3rem, 6vw, 7rem)", marginTop: "18vh" }}
+              className="max-w-[460px] z-0 relative text-left self-start"
+              style={{ paddingLeft: "clamp(3rem, 6vw, 7rem)", marginTop: "18vh", color: "#000000" }}
             >
               <motion.p
-                className="hero-kicker mb-[0.3rem] text-[clamp(1.1rem,2.2vw,1.5rem)] font-normal text-white/70"
+                className="hero-kicker mb-[0.3rem] text-[clamp(1.1rem,2.2vw,1.5rem)] font-normal"
+                style={{ color: "#000000" }}
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                 animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 1.1, ease: "easeOut" }}
@@ -158,12 +165,14 @@ export default function HeroSection() {
               </motion.p>
 
               <motion.h2
-                className="hero-mid mt-0 tracking-tighter leading-[0.95] text-white whitespace-nowrap"
+                className="hero-mid mt-0 tracking-tighter leading-[0.95] whitespace-nowrap"
+                style={{ color: "#000000" }}
                 initial={false}
                 animate={false}
               >
                 <motion.span
-                  className="mb-[0.2rem] block text-[clamp(2.8rem,5.4vw,4.3rem)] font-bold text-white"
+                  className="mb-[0.2rem] block text-[clamp(2.8rem,5.4vw,4.3rem)] font-bold"
+                  style={{ color: "#000000" }}
                   initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                   animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 1.25, ease: "easeOut" }}
@@ -171,7 +180,8 @@ export default function HeroSection() {
                   {"I'm Sadat"}
                 </motion.span>
                 <motion.span
-                  className="mb-0 block text-[clamp(1.7rem,3.3vw,2.8rem)] font-medium text-white/75"
+                  className="mb-0 block text-[clamp(1.7rem,3.3vw,2.8rem)] font-medium"
+                  style={{ color: "#000000" }}
                   initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                   animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 1.4, ease: "easeOut" }}
@@ -208,7 +218,7 @@ export default function HeroSection() {
       >
         <h1
           className="hero-big text-[clamp(3.8rem,8.8vw,8.2rem)] font-black tracking-tighter leading-[0.9] whitespace-nowrap"
-          style={{ color: "rgba(255,255,255,0.15)", WebkitTextStroke: "0 transparent" }}
+          style={{ color: "rgba(26,26,26,0.14)", WebkitTextStroke: "0 transparent" }}
         >
           <span className={`hero-word-glitch ${isWordGlitchActive ? "glitch-active" : ""} ${isIdleGlitchActive ? "idle-glitch-active" : ""}`}>
             {prefersReducedMotion ? (
@@ -251,7 +261,7 @@ export default function HeroSection() {
           type="button"
           onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}
           aria-label="Scroll to About section"
-          className="text-white/80 hover:text-white"
+          className="text-[#1a1a1a] hover:text-black"
           animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >

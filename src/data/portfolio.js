@@ -51,45 +51,15 @@ export const skills = [
 
 export const projects = [
   {
-    title: "NovaPay",
+    title: "VITON (Virtual Try-On)",
     description:
-      "A next-gen fintech dashboard with real-time analytics, AI-powered insights, and seamless payment processing for modern businesses.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    tech: ["React", "TypeScript", "Node.js", "PostgreSQL", "Stripe"],
-    github: "https://github.com",
-    live: "https://example.com",
+      "A premium fashion e-commerce platform with a luxury minimal UI. Features gender-based shopping, smooth animations, and a secure admin dashboard for real-time product management.",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Framer Motion"],
+    github: "https://github.com/TahmidSadat02/VITON.-Virtual-Try-on-",
+    live: "",
     featured: true,
-  },
-  {
-    title: "Artisan",
-    description:
-      "An AI-powered design tool that generates stunning UI components from natural language descriptions with export to React code.",
-    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=400&fit=crop",
-    tech: ["Next.js", "OpenAI", "Tailwind", "Prisma", "Vercel"],
-    github: "https://github.com",
-    live: "https://example.com",
-    featured: true,
-  },
-  {
-    title: "CloudSync",
-    description:
-      "A collaborative cloud storage platform with real-time file syncing, version control, and team management features.",
-    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=400&fit=crop",
-    tech: ["React", "AWS S3", "Node.js", "Socket.io", "Redis"],
-    github: "https://github.com",
-    live: "https://example.com",
-    featured: false,
-  },
-  {
-    title: "Pulse",
-    description:
-      "A health & fitness tracking app with personalized workout plans, nutrition tracking, and social challenges.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop",
-    tech: ["React Native", "Firebase", "TensorFlow", "Express"],
-    github: "https://github.com",
-    live: "https://example.com",
-    featured: false,
-  },
+  }
 ];
 
 export const experiences = [
