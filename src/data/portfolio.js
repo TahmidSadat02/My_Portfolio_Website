@@ -59,7 +59,17 @@ export const projects = [
     github: "https://github.com/TahmidSadat02/VITON.-Virtual-Try-on-",
     live: "",
     featured: true,
-  }
+  },
+  {
+    title: "Classroom Management System",
+    description:
+      "A role-based classroom manager built with PHP and MySQL. Supports admin control, course management, teacher file uploads, and student downloads — all through a clean, structured web interface.",
+    image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80",
+    tech: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+    github: "https://github.com/TahmidSadat02/classroom_management_system",
+    live: "",
+    featured: true,
+  },
 ];
 
 export const experiences = [
