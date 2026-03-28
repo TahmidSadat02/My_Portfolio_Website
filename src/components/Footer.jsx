@@ -21,9 +21,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <a href="#home" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="text-xl font-bold font-poppins">
-            <span className="gradient-text">{"<"}</span>
-            <span className="text-white">Dev</span>
-            <span className="gradient-text">{"/>"}</span>
+            <span className="gradient-text">{""}</span>
+            <span className="text-white"></span>
+            <span className="gradient-text">{""}</span>
           </a>
 
           {/* Social */}
@@ -58,8 +58,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center mt-8 pt-6 border-t border-white/5">
           <p className="text-sm text-gray-600">
-            © {new Date().getFullYear()} {personalInfo.name}. Built with{" "}
-            <FaHeart className="inline text-neon-pink text-xs" /> using React & Tailwind CSS
+            © 2026 - All Rights Reserved
           </p>
         </div>
       </div>

@@ -9,7 +9,7 @@ export default function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
   const [isWordGlitchActive, setIsWordGlitchActive] = useState(false);
   const animatedWords = useMemo(
-    () => ["Software Engineer", "ML Engineer", "Web Developer", "Problem Solver", "CS Student"],
+    () => ["S/W Engineer", "ML Engineer", "Web Developer", "Problem Solver", "CS Student"],
     []
   );
   const [currentAnimatedWord, setCurrentAnimatedWord] = useState(animatedWords[0]);
@@ -128,8 +128,6 @@ export default function HeroSection() {
             objectPosition: "center 22%", 
             opacity: 0.24, 
             filter: "grayscale(100%) blur(1px) brightness(1.35)",
-            animation: "bg-drift 20s ease-in-out infinite",
-            willChange: "transform"
           }}
         />
         <div className="absolute inset-0 bg-white/40" />
