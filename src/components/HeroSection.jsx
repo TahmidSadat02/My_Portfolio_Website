@@ -124,10 +124,12 @@ export default function HeroSection() {
           alt=""
           loading="lazy"
           className="h-full w-full object-cover"
-          style={{ 
-            objectPosition: "center 22%", 
-            opacity: 0.24, 
+          style={{
+            objectPosition: "center 22%",
+            opacity: 0.24,
             filter: "grayscale(100%) blur(1px) brightness(1.35)",
+            animation: "bg-drift 20s ease-in-out infinite",
+            willChange: "transform"
           }}
         />
         <div className="absolute inset-0 bg-white/40" />
