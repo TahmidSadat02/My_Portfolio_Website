@@ -1,0 +1,115 @@
+/* ── My Journey Section ── */
+
+.journey-heading {
+  text-align: left;
+  padding-left: clamp(2rem, 4vw, 5rem);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  color: #1a1a1a;
+  font-weight: 300;
+  width: fit-content;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding-bottom: 0.3rem;
+  margin-bottom: 3.5rem;
+}
+
+/* ── Timeline wrapper ── */
+.journey-timeline {
+  position: relative;
+  padding-left: clamp(2rem, 4vw, 5rem);
+}
+
+/* Thin vertical line */
+.journey-line {
+  position: absolute;
+  left: clamp(2rem, 4vw, 5rem);
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18),
+    rgba(0, 0, 0, 0.10),
+    rgba(0, 0, 0, 0)
+  );
+  pointer-events: none;
+}
+
+/* ── Each timeline row ── */
+.journey-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  grid-template-areas:
+    "year content"
+    ".    content";
+  column-gap: 2rem;
+  align-items: start;
+  margin-bottom: 2.6rem;
+  padding-left: 1.5rem; /* pushes content right of the line */
+}
+
+/* Accent dot on the line */
+.journey-dot {
+  position: absolute;
+  left: -0.3rem; /* centred on the line */
+  top: 0.45rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #1a1a1a;
+  flex-shrink: 0;
+}
+
+/* Year label */
+.journey-year {
+  grid-area: year;
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #888;
+  letter-spacing: 0.04em;
+  padding-top: 0.15rem;
+  white-space: nowrap;
+}
+
+/* Content block */
+.journey-content {
+  grid-area: content;
+}
+
+.journey-title {
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 0 0 0.35rem;
+}
+
+.journey-desc {
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .journey-item {
+    grid-template-columns: 5rem 1fr;
+    column-gap: 1.2rem;
+  }
+
+  .journey-year {
+    font-size: 0.72rem;
+  }
+
+  .journey-title {
+    font-size: 1rem;
+  }
+
+  .journey-desc {
+    font-size: 0.85rem;
+  }
+}
