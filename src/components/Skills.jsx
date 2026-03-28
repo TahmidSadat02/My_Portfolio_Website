@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
 import {
   SiReact, SiJavascript, SiPython, SiTailwindcss,
-  SiFlutter, SiHtml5, SiCss3, SiFramer, SiGit,
+  SiFlutter, SiHtml5, SiFramer, SiGit, SiScikitlearn,
 } from "react-icons/si";
-import { TbBrain } from "react-icons/tb";
 import { SectionWrapper, fadeInUp, scaleIn } from "../utils/animations";
 import "./Skills.css";
 
@@ -13,7 +12,7 @@ const skills = [
   { name: "Python",          Icon: SiPython,       level: 78 },
   { name: "Tailwind CSS",    Icon: SiTailwindcss, level: 88 },
   { name: "Flutter",         Icon: SiFlutter,     level: 70 },
-  { name: "Machine Learning",Icon: TbBrain,       level: 65 },
+  { name: "Machine Learning",Icon: SiScikitlearn, level: 65 },
   { name: "HTML / CSS",      Icon: SiHtml5,       level: 90 },
   { name: "Framer Motion",   Icon: SiFramer,      level: 75 },
   { name: "Git / GitHub",    Icon: SiGit,         level: 80 },
