@@ -1,8 +1,11 @@
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import About from "./components/About";
-import Skills from "./components/Skills";
 import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import Services from "./components/Services";
+import Certifications from "./components/Certifications";
+import Achievements from "./components/Achievements";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -23,8 +26,11 @@ export default function App() {
         <div className="content-background">
           <div className="content-ambient" />
           <About />
-          <Skills />
           <Projects />
+          <Skills />
+          <Services />
+          <Certifications />
+          <Achievements />
           <Experience />
           <Contact />
           <Footer />

@@ -9,7 +9,7 @@ export default function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
   const [isWordGlitchActive, setIsWordGlitchActive] = useState(false);
   const animatedWords = useMemo(
-    () => ["Developer", "Designer", "Engineer", "Innovator", "Creator", "Problem Solver", "Tech Enthusiast", "Believer"],
+    () => ["Software Engineer", "ML Engineer", "Web Developer", "Problem Solver", "CS Student"],
     []
   );
   const [currentAnimatedWord, setCurrentAnimatedWord] = useState(animatedWords[0]);

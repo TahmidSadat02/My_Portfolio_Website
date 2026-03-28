@@ -1,0 +1,154 @@
+/* ── Contact Section ── */
+.contact-heading {
+  text-align: left;
+  padding-left: clamp(2rem, 4vw, 5rem);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  color: #1a1a1a;
+  font-weight: 300;
+  width: fit-content;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding-bottom: 0.3rem;
+  margin-bottom: 3rem;
+}
+
+.contact-layout {
+  padding-left: clamp(2rem, 4vw, 5rem);
+  padding-right: clamp(2rem, 4vw, 5rem);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ── Left info ── */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-sub-heading {
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.contact-blurb {
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.contact-link-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  font-size: 0.88rem;
+  color: #444;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-link-row:hover {
+  color: #1a1a1a;
+}
+
+.contact-link-icon {
+  font-size: 1.05rem;
+  color: #1a1a1a;
+  flex-shrink: 0;
+}
+
+/* ── Right form ── */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1.25rem;
+  padding: 2rem;
+}
+
+.contact-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-label {
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #888;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.contact-input {
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.65rem;
+  padding: 0.7rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-input::placeholder {
+  color: #bbb;
+}
+
+.contact-input:focus {
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+}
+
+.contact-textarea {
+  resize: none;
+}
+
+.contact-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: "Raylig", "Lora", "Times New Roman", serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+  background: #1a1a1a;
+  border: none;
+  border-radius: 0.65rem;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.contact-submit:hover {
+  background: #333;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

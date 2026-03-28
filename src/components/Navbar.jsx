@@ -1,8 +1,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
-import { HiArrowRight } from "react-icons/hi";
-import { navLinks } from "../data/portfolio";
+
+const NAV_LINKS = [
+  { name: "Home",           href: "#home" },
+  { name: "About",          href: "#about" },
+  { name: "Projects",       href: "#projects" },
+  { name: "Skills",         href: "#skills" },
+  { name: "Services",       href: "#services" },
+  { name: "Certifications", href: "#certifications" },
+  { name: "Achievements",   href: "#achievements" },
+  { name: "Contact",        href: "#contact" },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -13,8 +22,7 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
-
-      const sections = navLinks.map((l) => l.href.replace("#", ""));
+      const sections = NAV_LINKS.map((l) => l.href.replace("#", ""));
       for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= 150) {
@@ -43,8 +51,8 @@ export default function Navbar() {
           : "top-4 bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-16 py-5 flex items-center justify-between lg:translate-x-4">
-        {/* Logo — clean & minimal */}
+      <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-16 py-5 flex items-center justify-between">
+        {/* Logo */}
         <motion.a
           href="#home"
           onClick={(e) => { e.preventDefault(); handleClick("#home"); }}
@@ -57,24 +65,21 @@ export default function Navbar() {
         </motion.a>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8 lg:gap-12">
-          {["Home", "About", "Skills", "Projects", "Experience", "Contact"].map((name) => {
-            const href = `#${name.toLowerCase()}`;
-            const isActive = activeSection === name.toLowerCase();
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          {NAV_LINKS.map((link) => {
+            const id = link.href.replace("#", "");
+            const isActive = activeSection === id;
             return (
-              <div key={name} className="flex flex-col items-center justify-center relative">
+              <div key={link.name} className="flex flex-col items-center relative">
                 <a
-                  href={href}
-                  onClick={(e) => { e.preventDefault(); handleClick(href); }}
-                  className={`relative text-[13px] font-bold tracking-widest uppercase transition-colors duration-300 ${
-                    isActive
-                      ? "!text-white"
-                      : "!text-white/80 hover:!text-white"
+                  href={link.href}
+                  onClick={(e) => { e.preventDefault(); handleClick(link.href); }}
+                  className={`relative text-[12px] font-bold tracking-widest uppercase transition-colors duration-300 ${
+                    isActive ? "!text-white" : "!text-white/70 hover:!text-white"
                   }`}
                 >
-                  {name}
+                  {link.name}
                 </a>
-                {/* Active Dot */}
                 {isActive && (
                   <motion.div
                     layoutId="navbar-active-dot"
@@ -85,8 +90,6 @@ export default function Navbar() {
             );
           })}
         </div>
-
-        {/* CTA Removed */}
 
         {/* Mobile Toggle */}
         <button
@@ -107,14 +110,14 @@ export default function Navbar() {
             className="md:hidden bg-dark-900/95 backdrop-blur-xl border-t border-white/5 overflow-hidden"
           >
             <div className="px-8 py-6 flex flex-col gap-1">
-              {navLinks.map((link, i) => (
+              {NAV_LINKS.map((link, i) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => { e.preventDefault(); handleClick(link.href); }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ delay: i * 0.04 }}
                   className={`px-4 py-3 rounded-lg text-sm font-semibold tracking-wide uppercase transition-all [font-family:'Poppins',sans-serif] ${
                     activeSection === link.href.replace("#", "")
                       ? "text-white bg-white/5"

@@ -31,7 +31,7 @@ const journey = [
   {
     year: "Present",
     title: "Aspiring Software Engineer",
-    desc: "Building projects, learning every day and pushing commits at 3AM. 🌙",
+    desc: "Building projects, learning every day and pushing commits at 3AM.",
   },
 ];
 
